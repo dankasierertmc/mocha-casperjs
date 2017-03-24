@@ -139,6 +139,16 @@ module.exports = function (Mocha, casper, utils) {
                 casper.checker = null
                 if (!currentTest || !currentTest.state) {
                   console.log("DKDONE " + instanceCount + ". 2 of 3");
+                  console.log("fn.length: " + fn.length);
+                console.log("currrentTest: " + currentTest);
+                if(casper.steps) {
+                  console.log("casper.steps.length: " + casper.steps.length);
+                }
+                console.log("casper.step: " + casper.step);
+                console.log("casper.checker: " + casper.checker);
+                if(currentTest) {
+                  console.log("currentTest.state: " + currentTest.state);
+                }
                   done();
                 }
               })
@@ -147,6 +157,16 @@ module.exports = function (Mocha, casper, utils) {
               // call `done` now. (If it's callback-asynchronous, `fn` will call `done` eventually since
               // we passed it in above.)
               console.log("DKDONE " + instanceCount + ". 3 of 3");
+              console.log("fn.length: " + fn.length);
+                console.log("currrentTest: " + currentTest);
+                if(casper.steps) {
+                  console.log("casper.steps.length: " + casper.steps.length);
+                }
+                console.log("casper.step: " + casper.step);
+                console.log("casper.checker: " + casper.checker);
+                if(currentTest) {
+                  console.log("currentTest.state: " + currentTest.state);
+                }
               done();
             }
           },
