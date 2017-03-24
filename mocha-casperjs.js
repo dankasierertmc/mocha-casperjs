@@ -115,7 +115,15 @@ module.exports = function (Mocha, casper, utils) {
             fn.call(this, (function(mycount) {
               return function() {
                 console.log("DKDONE " + mycount + ". 1 of 3");
-                console.log(fn.length);
+                console.log("fn.length: " + fn.length);
+                console.log("currrentTest: " + currentTest);
+                console.log("casper.steps: " + casper.steps);
+                console.log("casper.step: " + casper.step);
+                console.log("casper.checker: " + casper.checker);
+                if(currentTest) {
+                  console.log("currentTest.state: " + currentTest.state);
+                }
+                done();
                 done();
               };
             })(instanceCount));
