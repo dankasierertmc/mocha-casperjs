@@ -126,7 +126,6 @@ module.exports = function (Mocha, casper, utils) {
                   console.log("currentTest.state: " + currentTest.state);
                 }
                 done();
-                done();
               };
             })(instanceCount));
 
