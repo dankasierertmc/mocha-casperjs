@@ -110,7 +110,10 @@ module.exports = function (Mocha, casper, utils) {
             // Run the original `fn`, passing along `done` for the case in which it's callback-asynchronous.
             // Make sure to forward the `this` context, since you can set variables and stuff on it to share
             // within a suite.
-            fn.call(this, done)
+            fn.call(this, function() {
+              console.log("DKDONE. 1 of 3");
+              done();
+            });
 
             // only flush the casper steps on test Runnables,
             // and if there are steps not ran,
@@ -121,14 +124,16 @@ module.exports = function (Mocha, casper, utils) {
               casper.run(function () {
                 casper.checker = null
                 if (!currentTest || !currentTest.state) {
-                  done()
+                  console.log("DKDONE. 2 of 3");
+                  done();
                 }
               })
             } else if (fn.length === 0 && currentTest && !currentTest.state) {
               // If `fn` is synchronous (i.e. didn't have a `done` parameter and didn't return a promise),
               // call `done` now. (If it's callback-asynchronous, `fn` will call `done` eventually since
               // we passed it in above.)
-              done()
+              console.log("DKDONE. 3 of 3");
+              done();
             }
           },
           writable: true,
