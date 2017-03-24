@@ -112,7 +112,7 @@ module.exports = function (Mocha, casper, utils) {
             // Make sure to forward the `this` context, since you can set variables and stuff on it to share
             // within a suite.
             instanceCount++;
-            fn.call(this, (function() {
+            fn.call(this, (function(mycount) {
               console.log("DKDONE " + mycount + ". 1 of 3");
               done();
             })(instanceCount));
