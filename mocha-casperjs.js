@@ -115,7 +115,7 @@ module.exports = function (Mocha, casper, utils) {
             fn.call(this, (function(mycount) {
               return function() {
                 console.log("DKDONE " + mycount + ". 1 of 3");
-                console.log(fn);
+                console.log(fn.length);
                 done();
               };
             })(instanceCount));
