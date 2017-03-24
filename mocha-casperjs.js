@@ -117,7 +117,9 @@ module.exports = function (Mocha, casper, utils) {
                 console.log("DKDONE " + mycount + ". 1 of 3");
                 console.log("fn.length: " + fn.length);
                 console.log("currrentTest: " + currentTest);
-                console.log("casper.steps: " + casper.steps);
+                if(casper.steps) {
+                  console.log("casper.steps.length: " + casper.steps.length);
+                }
                 console.log("casper.step: " + casper.step);
                 console.log("casper.checker: " + casper.checker);
                 if(currentTest) {
