@@ -114,7 +114,7 @@ module.exports = function (Mocha, casper, utils) {
             instanceCount++;
             fn.call(this, (function(mycount) {
               return function() {
-                console.log("DKDONE " + mycount + ". 1 of 3");
+                console.log("DKDONE " + mycount + ". 1 of 4");
                 console.log("fn.length: " + fn.length);
                 console.log("currrentTest: " + currentTest);
                 if(casper.steps) {
@@ -135,7 +135,7 @@ module.exports = function (Mocha, casper, utils) {
 
             if (currentTest && casper.steps && casper.steps.length &&
                 casper.step < casper.steps.length && !casper.checker) {
-              console.log("DKDONE " + instanceCount + ". 2 of 3");
+              console.log("DKDONE " + instanceCount + ". 2 of 4");
                   console.log("fn.length: " + fn.length);
                 console.log("currrentTest: " + currentTest);
                 if(casper.steps) {
@@ -149,7 +149,7 @@ module.exports = function (Mocha, casper, utils) {
               casper.run(function () {
                 casper.checker = null
                 if (!currentTest || !currentTest.state) {
-                  console.log("DKDONE " + instanceCount + ". 2 of 3");
+                  console.log("DKDONE " + instanceCount + ". 3 of 4");
                   console.log("fn.length: " + fn.length);
                 console.log("currrentTest: " + currentTest);
                 if(casper.steps) {
@@ -167,7 +167,7 @@ module.exports = function (Mocha, casper, utils) {
               // If `fn` is synchronous (i.e. didn't have a `done` parameter and didn't return a promise),
               // call `done` now. (If it's callback-asynchronous, `fn` will call `done` eventually since
               // we passed it in above.)
-              console.log("DKDONE " + instanceCount + ". 3 of 3");
+              console.log("DKDONE " + instanceCount + ". 4 of 4");
               console.log("fn.length: " + fn.length);
                 console.log("currrentTest: " + currentTest);
                 if(casper.steps) {
