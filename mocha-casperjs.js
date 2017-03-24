@@ -113,8 +113,10 @@ module.exports = function (Mocha, casper, utils) {
             // within a suite.
             instanceCount++;
             fn.call(this, (function(mycount) {
-              console.log("DKDONE " + mycount + ". 1 of 3");
-              done();
+              return function() {
+                console.log("DKDONE " + mycount + ". 1 of 3");
+                done();
+              };
             })(instanceCount));
 
             // only flush the casper steps on test Runnables,
