@@ -132,7 +132,7 @@ module.exports = function (Mocha, casper, utils) {
             // only flush the casper steps on test Runnables,
             // and if there are steps not ran,
             // and no set of steps are running (casper.checker is the setInterval for the checkSteps call)
-
+var buffer;
             if (currentTest && casper.steps && casper.steps.length &&
                 casper.step < casper.steps.length && !casper.checker) {
     buffer += "DKDONE " + instanceCount + ". 2 of 4\n";
