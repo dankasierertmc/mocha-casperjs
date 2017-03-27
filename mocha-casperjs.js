@@ -146,11 +146,14 @@ var buffer;
                 if(currentTest) {
     buffer += "currentTest.state: " + currentTest.state + "\n";
                 }
+              (function(mycount) {
               casper.run(function () {
                 casper.checker = null
+                if (currentTest && casper.steps && casper.steps.length &&
+                casper.step < casper.steps.length && !casper.checker) {
                 if (!currentTest || !currentTest.state) {
                   console.log(buffer);
-                  console.log("DKDONE " + instanceCount + ". 3 of 4");
+                  console.log("DKDONE " + mycount + ". 3 of 4");
                   console.log("fn.length: " + fn.length);
                 console.log("currrentTest: " + currentTest);
                 if(casper.steps) {
@@ -164,6 +167,7 @@ var buffer;
                   done();
                 }
               })
+              })(instanceCount)
             } else if (fn.length === 0 && currentTest && !currentTest.state) {
               // If `fn` is synchronous (i.e. didn't have a `done` parameter and didn't return a promise),
               // call `done` now. (If it's callback-asynchronous, `fn` will call `done` eventually since
