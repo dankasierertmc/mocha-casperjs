@@ -149,8 +149,6 @@ var buffer;
               (function(mycount) {
               casper.run(function () {
                 casper.checker = null
-                if (currentTest && casper.steps && casper.steps.length &&
-                casper.step < casper.steps.length && !casper.checker) {
                 if (!currentTest || !currentTest.state) {
                   console.log(buffer);
                   console.log("DKDONE " + mycount + ". 3 of 4");
