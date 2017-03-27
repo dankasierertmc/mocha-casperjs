@@ -135,20 +135,21 @@ module.exports = function (Mocha, casper, utils) {
 
             if (currentTest && casper.steps && casper.steps.length &&
                 casper.step < casper.steps.length && !casper.checker) {
-              console.log("DKDONE " + instanceCount + ". 2 of 4");
-                  console.log("fn.length: " + fn.length);
-                console.log("currrentTest: " + currentTest);
+    buffer += "DKDONE " + instanceCount + ". 2 of 4\n";
+    buffer += "fn.length: " + fn.length + "\n";
+    buffer += "currrentTest: " + currentTest + "\n";
                 if(casper.steps) {
-                  console.log("casper.steps.length: " + casper.steps.length);
+    buffer += "casper.steps.length: " + casper.steps.length + "\n";
                 }
-                console.log("casper.step: " + casper.step);
-                console.log("casper.checker: " + casper.checker);
+    buffer += "casper.step: " + casper.step + "\n";
+    buffer += "casper.checker: " + casper.checker + "\n";
                 if(currentTest) {
-                  console.log("currentTest.state: " + currentTest.state);
+    buffer += "currentTest.state: " + currentTest.state + "\n";
                 }
               casper.run(function () {
                 casper.checker = null
                 if (!currentTest || !currentTest.state) {
+                  console.log(buffer);
                   console.log("DKDONE " + instanceCount + ". 3 of 4");
                   console.log("fn.length: " + fn.length);
                 console.log("currrentTest: " + currentTest);
