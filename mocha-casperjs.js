@@ -112,22 +112,7 @@ module.exports = function (Mocha, casper, utils) {
             // Make sure to forward the `this` context, since you can set variables and stuff on it to share
             // within a suite.
             instanceCount++;
-            fn.call(this, (function(mycount) {
-              return function() {
-                console.log("DKDONE " + mycount + ". 1 of 4");
-                console.log("fn.length: " + fn.length);
-                console.log("currrentTest: " + currentTest);
-                if(casper.steps) {
-                  console.log("casper.steps.length: " + casper.steps.length);
-                }
-                console.log("casper.step: " + casper.step);
-                console.log("casper.checker: " + casper.checker);
-                if(currentTest) {
-                  console.log("currentTest.state: " + currentTest.state);
-                }
-                done();
-              };
-            })(instanceCount));
+            fn.call(this, done);
 
             // only flush the casper steps on test Runnables,
             // and if there are steps not ran,
@@ -135,52 +120,18 @@ module.exports = function (Mocha, casper, utils) {
 var buffer;
             if (currentTest && casper.steps && casper.steps.length &&
                 casper.step < casper.steps.length && !casper.checker) {
-    buffer += "DKDONE " + instanceCount + ". 2 of 4\n";
-    buffer += "fn.length: " + fn.length + "\n";
-    buffer += "currrentTest: " + currentTest + "\n";
-                if(casper.steps) {
-    buffer += "casper.steps.length: " + casper.steps.length + "\n";
-                }
-    buffer += "casper.step: " + casper.step + "\n";
-    buffer += "casper.checker: " + casper.checker + "\n";
-                if(currentTest) {
-    buffer += "currentTest.state: " + currentTest.state + "\n";
-                }
-             // (function(mycount) {
+              (function() {
               casper.run(function () {
                 casper.checker = null
                 if (!currentTest || !currentTest.state) {
-                  console.log(buffer);
-                  console.log("DKDONE " + instanceCount + ". 3 of 4");
-                  console.log("fn.length: " + fn.length);
-                console.log("currrentTest: " + currentTest);
-                if(casper.steps) {
-                  console.log("casper.steps.length: " + casper.steps.length);
-                }
-                console.log("casper.step: " + casper.step);
-                console.log("casper.checker: " + casper.checker);
-                if(currentTest) {
-                  console.log("currentTest.state: " + currentTest.state);
-                }
                   done();
                 }
               })
-             // })(instanceCount)
+              })()
             } else if (fn.length === 0 && currentTest && !currentTest.state) {
               // If `fn` is synchronous (i.e. didn't have a `done` parameter and didn't return a promise),
               // call `done` now. (If it's callback-asynchronous, `fn` will call `done` eventually since
               // we passed it in above.)
-              console.log("DKDONE " + instanceCount + ". 4 of 4");
-              console.log("fn.length: " + fn.length);
-                console.log("currrentTest: " + currentTest);
-                if(casper.steps) {
-                  console.log("casper.steps.length: " + casper.steps.length);
-                }
-                console.log("casper.step: " + casper.step);
-                console.log("casper.checker: " + casper.checker);
-                if(currentTest) {
-                  console.log("currentTest.state: " + currentTest.state);
-                }
               done();
             }
           },
